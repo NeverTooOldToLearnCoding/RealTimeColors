@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Epic Button Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+    <script type ="text/javascript">
+
+        $(document).ready(function (){
+
+            var socket = io(); //1
+            socket.emit('imconnected');
+            socket.on('updateAllClients', function (data) {
+                document.body.style.backgroundColor = data.color ;
+            });
+
+
+            $( "#green" ).click(function (){
+                socket.emit("green");
+            });
+
+            $( "#red" ).click(function (){
+                socket.emit("red");
+            });
+
+            $( "#pink" ).click(function (){
+                socket.emit("pink");
+            });
+
+
+         })
+    </script>
+<style>
+
+    
+
+</style>
+
+</head>
+
+<body>
+
+<div>
+
+
+<button id="green" type="button">Green</button>
+<button id="red" type="button">Red</button>
+<button id="pink" type="button">Pink</button>
+
+</div>
+
+</body>
+</html>
